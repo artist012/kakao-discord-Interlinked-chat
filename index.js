@@ -107,7 +107,7 @@ async function main() {
 }
 async function start() {
 	await main();
-    client1.login('OTExMjkwMTI4NTU3ODI2MTI4.YZfPEQ.FUyz2vw_qiUGak_Vsm4M8O2_PMY')
+    client1.login('봇토큰')
 }
 
 start();
