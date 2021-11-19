@@ -1,0 +1,147 @@
+import { Long } from 'bson';
+import { ChannelType } from '../../channel';
+import { ChannelMetaType } from '../../channel/meta';
+import { ChatlogStruct } from './chat';
+export interface ChannelMetaStruct {
+    type: ChannelMetaType;
+    revision: number;
+    authorId: Long;
+    content: string;
+    updatedAt: number;
+}
+export interface ChannelClientMetaStruct {
+    name?: string;
+    image_path?: string;
+    favorite?: boolean;
+    push_sound?: boolean;
+    chat_hide?: boolean;
+    fullImageUrl?: string;
+    imageUrl?: string;
+}
+export interface DisplayUserStruct {
+    userId: Long;
+    nickName: string;
+    countryIso: string;
+    profileImageUrl: string;
+}
+export interface ChannelDataStruct {
+    /**
+     * Channel id
+     */
+    c: Long;
+    /**
+     * Channel type
+     */
+    t: string;
+    /**
+     * Active user count
+     */
+    a: number;
+    n: number;
+    /**
+     * Last seen log id
+     */
+    s: Long;
+    /**
+     * Last chatlog
+     */
+    l?: ChatlogStruct;
+    i?: Long[];
+    k?: string[];
+    m?: unknown;
+    mmr: unknown;
+    /**
+     * Last log id
+     */
+    ll: Long;
+    /**
+     * Last update
+     */
+    o: number;
+    jn: number;
+    p: boolean;
+    li?: Long;
+    otk?: number;
+}
+export interface ChannelInfoStruct extends Partial<NormalChannelInfoExtra>, Partial<OpenChannelInfoExtra> {
+    /**
+     * Channel id
+     */
+    chatId: Long;
+    /**
+     * Channel type
+     */
+    type: ChannelType;
+    /**
+     * Active members count
+     */
+    activeMembersCount: number;
+    /**
+     * New message count since this info
+     */
+    newMessageCount: number;
+    /**
+     * true if newMessageCount is invalid
+     */
+    invalidNewMessageCount: boolean;
+    /**
+     * Unknown
+     */
+    lastUpdatedAt?: unknown;
+    /**
+     * Unknown
+     */
+    lastMessage?: unknown;
+    /**
+     * Last chat log id
+     */
+    lastLogId: Long;
+    /**
+     * Last seen chat log id
+     */
+    lastSeenLogId: Long;
+    /**
+     * Last chat log (null if last chat is from 3 days ago)
+     */
+    lastChatLog?: ChatlogStruct;
+    /**
+     * Possibly client settings.
+     */
+    meta?: ChannelClientMetaStruct;
+    /**
+     * Channel metas
+     */
+    chatMetas?: ChannelMetaStruct[];
+    /**
+     * Display user list
+     */
+    displayMembers?: DisplayUserStruct[];
+    /**
+     * push alert setting
+     */
+    pushAlert: boolean;
+}
+export interface NormalChannelInfoExtra {
+    /**
+     * true if channel is invalid(?).
+     */
+    left: boolean;
+    /**
+     * New mem join time(?)
+     */
+    joinedAtForNewMem: number;
+}
+export interface OpenChannelInfoExtra {
+    /**
+     * OpenLink id
+     */
+    li: Long;
+    /**
+     * OpenLink token
+     */
+    otk: number;
+    /**
+     * true if channel is dm
+     */
+    directChat: boolean;
+}
