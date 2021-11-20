@@ -47,13 +47,14 @@ client1.on('messageCreate',async message=>{
 client.on('chat', (data, channel) => {
     const sender = data.getSenderInfo(channel);
     
-    id = data.getSenderInfo(channel).userId;
-    roomId = channel.channelId;
+    let roomId = channel.channelId;
 
-    const IMAGE_URL = sender.originalProfileURL;
-    hook.setUsername(sender.nickname);
-    hook.setAvatar(IMAGE_URL);
-    hook.send(data.text);
+    if(roomId == kakao_channel) {
+        const IMAGE_URL = sender.originalProfileURL;
+        hook.setUsername(sender.nickname);
+        hook.setAvatar(IMAGE_URL);
+        hook.send(data.text);
+    }
 });
 
 client.on('disconnected', (reason) => {
