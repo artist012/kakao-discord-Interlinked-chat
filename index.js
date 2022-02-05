@@ -78,7 +78,7 @@ async function main() {
                 console.log("\n[!] 인증코드를 요청하지 못했습니다||에러코드: " + passcodeRes.status);
                 process.exit();
             }
-            let rl = readline.default.createInterface({
+            let rl = readline.createInterface({
                 input: process.stdin,
                 output: process.stdout
             });
